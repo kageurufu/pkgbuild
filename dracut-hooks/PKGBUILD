@@ -1,0 +1,40 @@
+# Maintainer: Franklyn Tackitt <franklyn@tackitt.net>
+
+pkgname=(
+  "dracut-hook-linux"
+  "dracut-hook-linux-lts"
+)
+pkgver=0.1
+pkgrel=1
+pkgdesc="dracut hooks for linux"
+arch=('any')
+url="https://tackitt.net"
+license=('BSD')
+depends=('linux' 'dracut')
+noextract=()
+
+source=(
+  "90-dracut-linux.hook"
+  "90-dracut-linux-lts.hook"
+  "dracut-linux"
+  "dracut-linux-lts"
+)
+md5sums=('54f84e756ce0d9838d56d61b5988e0bb'
+         '8e72758e6edf36c4bdc5fc4812db7844'
+         '9d5266ce199a8454039f80d99bbd1c23'
+         '7614cce042263cdbab6a7cd7ce6fb51e')
+
+
+package_dracut-hook-linux() {
+  cd "$srcdir"
+
+  install -Dm755 "dracut-linux" "${pkgdir}/usr/share/libalpm/scripts/dracut-linux"
+  install -Dm644 "90-dracut-linux.hook" "${pkgdir}/usr/share/libalpm/hooks/90-dracut-linux.hook"
+}
+
+package_dracut-hook-linux-lts() {
+  cd "$srcdir"
+
+  install -Dm755 "dracut-linux-lts" "${pkgdir}/usr/share/libalpm/scripts/dracut-linux-lts"
+  install -Dm644 "90-dracut-linux-lts.hook" "${pkgdir}/usr/share/libalpm/hooks/90-dracut-linux-lts.hook"
+}

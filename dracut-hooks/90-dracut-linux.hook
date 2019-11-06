@@ -1,0 +1,11 @@
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Type = Package
+Target = dracut
+Target = linux
+
+[Action]
+Description = Updating linux dracut...
+When = PostTransaction
+Exec = /usr/share/libalpm/scripts/dracut-linux
